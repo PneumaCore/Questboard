@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  alias    String
+  games    Game[]
+}
+
+model Game {
+  id              Int       @id @default(autoincrement())
+  name            String
+  category        String
+  hours           Float
+  metacriticScore Int
+  completed       Boolean   @default(false)
+  completedAt     DateTime?
+  notes           String?
+  rating          Int?
+  userId          Int?
+  user            User?     @relation(fields: [userId], references: [id])
+
+  tags Tag[]
+
+  @@index([userId])
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  games Game[]
+}

@@ -14,6 +14,11 @@ exports.register = async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields: email, password, alias' });
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
     const existingUser = await prisma.user.findUnique({
       where: { email }
     });

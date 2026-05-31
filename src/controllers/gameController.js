@@ -131,8 +131,21 @@ exports.updateGame = async (req, res) => {
 
     if (name !== undefined) data.name = name;
     if (category !== undefined) data.category = category;
-    if (hours !== undefined) data.hours = parseFloat(hours);
-    if (metacriticScore !== undefined) data.metacriticScore = parseInt(metacriticScore, 10);
+    if (hours !== undefined) {
+      const parsedHours = parseFloat(hours);
+      if (isNaN(parsedHours)) {
+        return res.status(400).json({ error: 'Hours must be a valid number' });
+      }
+      data.hours = parsedHours;
+    }
+
+    if (metacriticScore !== undefined) {
+      const parsedScore = parseInt(metacriticScore, 10);
+      if (isNaN(parsedScore)) {
+        return res.status(400).json({ error: 'metacriticScore must be a valid number' });
+      }
+      data.metacriticScore = parsedScore;
+    }
     if (completed !== undefined) data.completed = completed;
     if (completedAt !== undefined) data.completedAt = completedAt;
     if (notes !== undefined) data.notes = notes;

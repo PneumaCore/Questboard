@@ -3,10 +3,10 @@
     <!-- Priority Badge (KPI estilo mision) -->
     <div
       :class="priorityClass"
-      class="absolute top-3 right-3 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-lg z-10 border border-white/10"
+      class="absolute top-3 right-3 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-lg z-10 border border-white/10 text-center"
     >
       <span class="block text-[10px] opacity-80 leading-none">Priority</span>
-      <span class="text-lg leading-none">{{ game.priority ?? '-' }}</span>
+      <span class="text-lg leading-none">{{ Math.round(game.priority) ?? '-' }}</span>
     </div>
 
     <div class="p-6 flex flex-col flex-grow">

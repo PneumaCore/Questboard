@@ -96,6 +96,55 @@
       </span>
     </div>
 
+    <!-- RAWG Enriched Details -->
+    <div v-if="hasRawgDetails" class="mb-8 space-y-4">
+      <!-- Description -->
+      <div v-if="game.description" class="bg-surface border border-border rounded-xl p-5">
+        <h3 class="text-text-muted text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2">
+          <span>📖</span> Descripcion
+        </h3>
+        <p class="text-text-main text-sm leading-relaxed whitespace-pre-line">{{ game.description }}</p>
+      </div>
+
+      <!-- Details Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div v-if="game.platforms" class="bg-surface border border-border rounded-xl p-5 hover:border-primary/50 transition-colors">
+          <p class="text-text-muted text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span>🎮</span> Plataformas
+          </p>
+          <p class="text-white text-sm font-medium">{{ game.platforms }}</p>
+        </div>
+
+        <div v-if="game.releaseDate" class="bg-surface border border-border rounded-xl p-5 hover:border-primary/50 transition-colors">
+          <p class="text-text-muted text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span>📅</span> Lanzamiento
+          </p>
+          <p class="text-white text-sm font-medium">{{ formatShortDate(game.releaseDate) }}</p>
+        </div>
+
+        <div v-if="game.developer" class="bg-surface border border-border rounded-xl p-5 hover:border-primary/50 transition-colors">
+          <p class="text-text-muted text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span>💻</span> Desarrollador
+          </p>
+          <p class="text-white text-sm font-medium">{{ game.developer }}</p>
+        </div>
+
+        <div v-if="game.publisher" class="bg-surface border border-border rounded-xl p-5 hover:border-primary/50 transition-colors">
+          <p class="text-text-muted text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span>🏢</span> Publisher
+          </p>
+          <p class="text-white text-sm font-medium">{{ game.publisher }}</p>
+        </div>
+
+        <div v-if="game.ageRating" class="bg-surface border border-border rounded-xl p-5 hover:border-primary/50 transition-colors sm:col-span-2 lg:col-span-1">
+          <p class="text-text-muted text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+            <span>🔞</span> Clasificacion
+          </p>
+          <p class="text-white text-sm font-medium">{{ game.ageRating }}</p>
+        </div>
+      </div>
+    </div>
+
     <!-- Completion Info -->
     <div v-if="game.completedAt" class="mb-8 p-6 bg-success/10 border border-success/20 rounded-xl">
       <div class="flex items-center gap-3 text-success mb-3">
@@ -263,6 +312,11 @@ const metacriticColor = computed(() => {
   return 'text-secondary'
 })
 
+const hasRawgDetails = computed(() => {
+  if (!game.value) return false
+  return !!(game.value.description || game.value.platforms || game.value.releaseDate || game.value.developer || game.value.publisher || game.value.ageRating)
+})
+
 const formatDate = (dateStr) => {
   if (!dateStr) return ''
   return new Date(dateStr).toLocaleDateString('es-ES', {
@@ -271,6 +325,15 @@ const formatDate = (dateStr) => {
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit'
+  })
+}
+
+const formatShortDate = (dateStr) => {
+  if (!dateStr) return ''
+  return new Date(dateStr).toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   })
 }
 

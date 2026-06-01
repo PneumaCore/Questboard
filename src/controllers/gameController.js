@@ -15,7 +15,7 @@ const buildGameResponse = (game) => ({
 // POST /api/games - Crear un nuevo juego asociado al usuario autenticado
 exports.createGame = async (req, res) => {
   try {
-    const { name, category, hours, metacriticScore, tags, coverImage } = req.body;
+    const { name, category, hours, metacriticScore, tags, coverImage, description, platforms, releaseDate, developer, publisher, ageRating, rawgId } = req.body;
     const userId = req.user.userId;
 
     if (!name || !category || hours === undefined || metacriticScore === undefined) {
@@ -38,6 +38,13 @@ exports.createGame = async (req, res) => {
     };
 
     if (coverImage !== undefined) data.coverImage = coverImage;
+    if (description !== undefined) data.description = description;
+    if (platforms !== undefined) data.platforms = platforms;
+    if (releaseDate !== undefined) data.releaseDate = releaseDate;
+    if (developer !== undefined) data.developer = developer;
+    if (publisher !== undefined) data.publisher = publisher;
+    if (ageRating !== undefined) data.ageRating = ageRating;
+    if (rawgId !== undefined) data.rawgId = rawgId;
 
     if (Array.isArray(tags) && tags.length > 0) {
       data.tags = {
@@ -179,7 +186,7 @@ exports.updateGame = async (req, res) => {
       return res.status(404).json({ error: 'Game not found or access denied' });
     }
 
-    const { name, category, hours, metacriticScore, completed, completedAt, notes, rating, tags } = req.body;
+    const { name, category, hours, metacriticScore, completed, completedAt, notes, rating, tags, coverImage, description, platforms, releaseDate, developer, publisher, ageRating, rawgId } = req.body;
 
     const data = {};
 
@@ -203,6 +210,14 @@ exports.updateGame = async (req, res) => {
     if (completed !== undefined) data.completed = completed;
     if (completedAt !== undefined) data.completedAt = completedAt;
     if (notes !== undefined) data.notes = notes;
+    if (coverImage !== undefined) data.coverImage = coverImage;
+    if (description !== undefined) data.description = description;
+    if (platforms !== undefined) data.platforms = platforms;
+    if (releaseDate !== undefined) data.releaseDate = releaseDate;
+    if (developer !== undefined) data.developer = developer;
+    if (publisher !== undefined) data.publisher = publisher;
+    if (ageRating !== undefined) data.ageRating = ageRating;
+    if (rawgId !== undefined) data.rawgId = rawgId;
 
     if (rating !== undefined) {
       const parsedRating = parseInt(rating, 10);

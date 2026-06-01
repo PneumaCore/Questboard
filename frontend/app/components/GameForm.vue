@@ -160,7 +160,14 @@ const form = reactive({
   hours: null,
   metacriticScore: null,
   tags: [],
-  coverImage: ''
+  coverImage: '',
+  description: '',
+  platforms: '',
+  releaseDate: '',
+  developer: '',
+  publisher: '',
+  ageRating: '',
+  rawgId: null
 })
 
 const tagsInput = ref('')
@@ -182,10 +189,17 @@ watch(
       form.hours = newVal.hours ?? null
       form.metacriticScore = newVal.metacriticScore ?? null
       form.coverImage = newVal.coverImage || ''
-      form.coverImage = newVal.coverImage || ''
       tagsInput.value = Array.isArray(newVal.tags)
         ? newVal.tags.map(t => t.name || t).join(', ')
         : (newVal.tags || '')
+      // Campos enriquecidos ocultos (se conservan en edición)
+      form.description = newVal.description || ''
+      form.platforms = newVal.platforms || ''
+      form.releaseDate = newVal.releaseDate || ''
+      form.developer = newVal.developer || ''
+      form.publisher = newVal.publisher || ''
+      form.ageRating = newVal.ageRating || ''
+      form.rawgId = newVal.rawgId ?? null
     }
   },
   { immediate: true }
@@ -224,7 +238,7 @@ const performSearch = async (query) => {
   }
 }
 
-const selectGame = (game) => {
+const selectGame = async (game) => {
   searchQuery.value = ''
   searchResults.value = []
   showDropdown.value = false
@@ -238,6 +252,24 @@ const selectGame = (game) => {
   if (game.backgroundImage) form.coverImage = game.backgroundImage
   if (game.genres && game.genres.length > 0 && !tagsInput.value.trim()) {
     tagsInput.value = game.genres.join(', ')
+  }
+
+  // RawgId para referencia futura
+  if (game.id) form.rawgId = game.id
+
+  // Petición enriquecida al detalle de RAWG (campos ocultos)
+  try {
+    const { data } = await apiClient.get(`/rawg/games/${game.id}`)
+    if (data.description) form.description = data.description
+    if (data.platforms) form.platforms = data.platforms
+    if (data.releaseDate) form.releaseDate = data.releaseDate
+    if (data.developer) form.developer = data.developer
+    if (data.publisher) form.publisher = data.publisher
+    if (data.ageRating) form.ageRating = data.ageRating
+    if (data.rawgId) form.rawgId = data.rawgId
+  } catch (err) {
+    console.error('Error fetching RAWG details:', err)
+    // No bloqueamos la creación si RAWG falla; los campos quedan vacíos
   }
 }
 
@@ -267,7 +299,14 @@ const handleSubmit = () => {
     hours: form.hours,
     metacriticScore: form.metacriticScore,
     tags: tagsArray,
-    coverImage: form.coverImage
+    coverImage: form.coverImage,
+    description: form.description,
+    platforms: form.platforms,
+    releaseDate: form.releaseDate,
+    developer: form.developer,
+    publisher: form.publisher,
+    ageRating: form.ageRating,
+    rawgId: form.rawgId
   })
 }
 </script>

@@ -47,3 +47,44 @@ exports.searchGames = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+/**
+ * Obtiene el detalle completo de un juego en RAWG por su ID.
+ * GET /api/rawg/games/:id
+ */
+exports.getGameDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id || isNaN(Number(id))) {
+      return res.status(400).json({ error: 'Valid RAWG game id is required' });
+    }
+
+    const url = `${RAWG_BASE_URL}/games/${id}?key=${API_KEY}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      console.error('RAWG API error:', response.status, response.statusText);
+      return res.status(502).json({ error: 'External API error' });
+    }
+
+    const game = await response.json();
+
+    // Normalizamos respuesta para el frontend
+    const details = {
+      rawgId: game.id,
+      description: game.description_raw || game.description || null,
+      platforms: game.platforms?.map((p) => p.platform?.name).filter(Boolean).join(', ') || null,
+      releaseDate: game.released || null,
+      developer: game.developers?.map((d) => d.name).filter(Boolean).join(', ') || null,
+      publisher: game.publishers?.map((p) => p.name).filter(Boolean).join(', ') || null,
+      ageRating: game.esrb_rating?.name || null
+    };
+
+    return res.json(details);
+  } catch (error) {
+    console.error('Error fetching RAWG game details:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};

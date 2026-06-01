@@ -24,7 +24,14 @@ const createGame = async (formData) => {
       hours: formData.hours,
       metacriticScore: formData.metacriticScore,
       tags: formData.tags,
-      coverImage: formData.coverImage
+      coverImage: formData.coverImage,
+      description: formData.description,
+      platforms: formData.platforms,
+      releaseDate: formData.releaseDate,
+      developer: formData.developer,
+      publisher: formData.publisher,
+      ageRating: formData.ageRating,
+      rawgId: formData.rawgId
     })
     router.push('/juegos')
   } catch (err) {

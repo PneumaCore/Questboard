@@ -29,6 +29,15 @@ model Game {
   userId          Int?
   user            User?     @relation(fields: [userId], references: [id])
 
+  // Campos enriquecidos desde RAWG
+  description String?
+  platforms   String?
+  releaseDate String?
+  developer   String?
+  publisher   String?
+  ageRating   String?
+  rawgId      Int?
+
   tags Tag[]
 
   @@index([userId])

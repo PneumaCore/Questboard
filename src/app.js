@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const gameRoutes = require('./routes/gameRoutes');
 const authRoutes = require('./routes/authRoutes');
+const rawgRoutes = require('./routes/rawgRoutes');
 const authenticateToken = require('./middlewares/authMiddleware');
 
 const app = express();
@@ -19,6 +20,9 @@ app.use('/api/auth', authRoutes);
 
 // Rutas de juegos (protegidas por autenticacion JWT)
 app.use('/api/games', authenticateToken, gameRoutes);
+
+// Rutas RAWG (protegidas por autenticacion JWT)
+app.use('/api/rawg', authenticateToken, rawgRoutes);
 
 // Manejador simple para rutas no encontradas
 app.use((req, res) => {

@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-primary transition-colors group relative flex flex-col">
+  <div
+    @click="goToDetail"
+    class="bg-surface border border-border rounded-xl overflow-hidden hover:border-primary transition-colors group relative flex flex-col cursor-pointer"
+  >
     <!-- Cover Image Hero -->
     <div v-if="game.coverImage" class="h-36 w-full overflow-hidden">
       <img
@@ -79,19 +82,20 @@
       <div class="flex gap-2 mt-auto pt-4 border-t border-border">
         <NuxtLink
           :to="`/juegos/edicion/${game.id}`"
+          @click.stop
           class="flex-1 py-2.5 text-center text-xs font-bold bg-surface-light text-primary border border-primary/30 rounded-lg hover:bg-primary hover:text-background transition-all uppercase tracking-wide"
         >
           Edit
         </NuxtLink>
         <button
-          @click="$emit('delete', game.id)"
+          @click.stop="$emit('delete', game.id)"
           class="flex-1 py-2.5 text-xs font-bold bg-surface-light text-secondary border border-secondary/30 rounded-lg hover:bg-secondary hover:text-white transition-all uppercase tracking-wide"
         >
           Delete
         </button>
         <button
           v-if="!game.completedAt"
-          @click="$emit('complete', game)"
+          @click.stop="$emit('complete', game)"
           class="flex-1 py-2.5 text-xs font-bold bg-surface-light text-success border border-success/30 rounded-lg hover:bg-success hover:text-background transition-all uppercase tracking-wide"
         >
           Complete
@@ -110,6 +114,10 @@ const props = defineProps({
 })
 
 defineEmits(['delete', 'complete'])
+
+const goToDetail = () => {
+  navigateTo(`/juegos/${props.game.id}`)
+}
 
 const parsedTags = computed(() => {
   if (!props.game.tags) return []

@@ -1,11 +1,15 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const gameRoutes = require('./routes/gameRoutes');
 const authRoutes = require('./routes/authRoutes');
 const authenticateToken = require('./middlewares/authMiddleware');
 
 const app = express();
+
+// Middleware CORS para permitir peticiones desde el frontend
+app.use(cors());
 
 // Middleware para parsear cuerpos JSON
 app.use(express.json());

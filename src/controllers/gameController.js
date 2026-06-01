@@ -106,6 +106,58 @@ exports.listGames = async (req, res) => {
   }
 };
 
+// GET /api/games/:id - Obtener un juego especifico del usuario autenticado
+exports.getGameById = async (req, res) => {
+  try {
+    const gameId = parseInt(req.params.id, 10);
+    const userId = req.user.userId;
+
+    if (isNaN(gameId)) {
+      return res.status(400).json({ error: 'Invalid game id' });
+    }
+
+    const game = await prisma.game.findFirst({
+      where: { id: gameId, userId },
+      include: { tags: true }
+    });
+
+    if (!game) {
+      return res.status(404).json({ error: 'Game not found or access denied' });
+    }
+
+    return res.json(buildGameResponse(game));
+  } catch (error) {
+    console.error('Error fetching game:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// GET /api/games/:id - Obtener un juego especifico del usuario autenticado
+exports.getGameById = async (req, res) => {
+  try {
+    const gameId = parseInt(req.params.id, 10);
+    const userId = req.user.userId;
+
+    if (isNaN(gameId)) {
+      return res.status(400).json({ error: 'Invalid game id' });
+    }
+
+    const game = await prisma.game.findFirst({
+      where: { id: gameId, userId },
+      include: { tags: true }
+    });
+
+    if (!game) {
+      return res.status(404).json({ error: 'Game not found or access denied' });
+    }
+
+    return res.json(buildGameResponse(game));
+  } catch (error) {
+    console.error('Error fetching game:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 // PUT /api/games/:id - Editar un juego del usuario autenticado
 exports.updateGame = async (req, res) => {
   try {

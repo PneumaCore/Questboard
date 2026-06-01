@@ -30,3 +30,11 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+
+# Información para la creación del proyecto
+Información diapositivas/
+
+# Frontend
+frontend/node_modules/
+frontend/.nuxt/
+frontend/.output/

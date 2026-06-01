@@ -23,7 +23,8 @@ const createGame = async (formData) => {
       category: formData.category,
       hours: formData.hours,
       metacriticScore: formData.metacriticScore,
-      tags: formData.tags
+      tags: formData.tags,
+      coverImage: formData.coverImage
     })
     router.push('/juegos')
   } catch (err) {

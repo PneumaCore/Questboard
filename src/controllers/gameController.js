@@ -15,7 +15,7 @@ const buildGameResponse = (game) => ({
 // POST /api/games - Crear un nuevo juego asociado al usuario autenticado
 exports.createGame = async (req, res) => {
   try {
-    const { name, category, hours, metacriticScore, tags } = req.body;
+    const { name, category, hours, metacriticScore, tags, coverImage } = req.body;
     const userId = req.user.userId;
 
     if (!name || !category || hours === undefined || metacriticScore === undefined) {
@@ -36,6 +36,8 @@ exports.createGame = async (req, res) => {
       metacriticScore: parsedScore,
       userId
     };
+
+    if (coverImage !== undefined) data.coverImage = coverImage;
 
     if (Array.isArray(tags) && tags.length > 0) {
       data.tags = {

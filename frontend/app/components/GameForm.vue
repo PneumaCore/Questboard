@@ -159,7 +159,8 @@ const form = reactive({
   category: '',
   hours: null,
   metacriticScore: null,
-  tags: []
+  tags: [],
+  coverImage: ''
 })
 
 const tagsInput = ref('')
@@ -180,6 +181,8 @@ watch(
       form.category = newVal.category || ''
       form.hours = newVal.hours ?? null
       form.metacriticScore = newVal.metacriticScore ?? null
+      form.coverImage = newVal.coverImage || ''
+      form.coverImage = newVal.coverImage || ''
       tagsInput.value = Array.isArray(newVal.tags)
         ? newVal.tags.map(t => t.name || t).join(', ')
         : (newVal.tags || '')
@@ -232,7 +235,7 @@ const selectGame = (game) => {
   if (game.hours !== null && game.hours !== undefined) form.hours = game.hours
   if (game.metacriticScore !== null && game.metacriticScore !== undefined) form.metacriticScore = game.metacriticScore
 
-  // Si RAWG trae generos, los sugerimos como tags si no habia nada
+  if (game.backgroundImage) form.coverImage = game.backgroundImage
   if (game.genres && game.genres.length > 0 && !tagsInput.value.trim()) {
     tagsInput.value = game.genres.join(', ')
   }
@@ -263,7 +266,8 @@ const handleSubmit = () => {
     category: form.category,
     hours: form.hours,
     metacriticScore: form.metacriticScore,
-    tags: tagsArray
+    tags: tagsArray,
+    coverImage: form.coverImage
   })
 }
 </script>

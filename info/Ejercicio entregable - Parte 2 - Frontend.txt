@@ -1,0 +1,336 @@
+FSE+ Fondo Social Europeo Plus
+
+PEJU/AND/ADA/APP WEB IA
+
+DESARROLLO DE APLICACIONES WEB CON IA
+M.3011.002.083
+
+Ejercicio entregable - Frontend
+Juan Manuel Castillo Andrades
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+De las entrañas del Backend…
+…al glamour del Frontend
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+Ya tienes la API REST funcionando como un reloj suizo, ¡bien hecho!
+Ahora es momento de dar un paso más: crear el Frontend que le pondrá cara a
+todo ese músculo técnico. Porque, seamos sinceros, el código más bello del
+mundo no impresiona a nadie si no tiene una interfaz que lo haga brillar.
+¿Qué haremos?
+Vamos a crear una app en Vue 3 que se conecte con tu API y permita a los
+usuarios gestionar su backlog de videojuegos con estilo. Esta será la
+herramienta que los gamers necesitan para organizar su caos y cumplir la
+misión de pasar sus pendientes.
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+El boss ﬁnal
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+El Frontend no es solo una pantalla, es el puente entre el código y la gente.
+¡Es hora de ponerle cara y nombre a tu proyecto! 🎮✨
+Así que déjate de excusas y elige un nombre épico que grite a los cuatro
+vientos de qué va esta movida. Aquí no hablamos de "algo genérico", hablamos
+de un nombre macarra, memorable y con actitud.
+Porque si tu App va a organizar las vidas gamer de otros, necesita un título que
+ellos/ellas quieran tatuarse en el brazo (bueno, o al menos en su lista de
+favoritos).
+
+FSE+ Fondo Social Europeo Plus
+
+Naming y línea gráﬁca
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Porque ya va siendo hora de terminar algo en tu vida gamer.
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Para convertirte en el gamer que aplasta su backlog como un pro.
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Hardcore y directo, como tu biblioteca de pendientes debería ser.
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Porque hasta el caos necesita algo de orden (pero con estilo).
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Para los que no empiezan algo sin terminarlo.
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Porque más vale que no sea eterno tu listado de juegos por terminar.
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+¡Boom!
+Ya tenemos nombre y eslogan para este proyectazo, y ahora sí que empieza lo
+bueno.
+Este no es solo un título cualquiera, es la identidad que llevará tu App al
+siguiente nivel, la bandera que ondeará en el campo de batalla gamer.
+Puedes buscar una paleta de colores complementaria a partir de una imagen del
+logo en: https://colorpalette.imageonline.co/es/
+Es hora de brillar! 🕹🔝
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+Entregables
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Sprint 1: Frontend para un único gamer
+
+En este sprint, desarrollaremos la interfaz para un usuario único, sin necesidad de
+autenticación. El objetivo es construir las funcionalidades principales de gestión de
+juegos.
+Pantallas a desarrollar
+-
+
+Home
+Lista de juegos
+Formulario de juego (creación)
+Formulario de juego (edición)
+Detalle de juego (opcional)
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+Sprint 1: Frontend para un único gamer (continuación)
+Página
+
+Ruta
+
+Elementos
+
+Home
+
+/
+
+-
+
+Breve introducción al propósito de la aplicación.
+Botones o enlaces para acceder a la lista de juegos o
+crear uno nuevo.
+
+Lista de juegos
+
+/juegos
+
+-
+
+Mostrar los juegos en un listado.
+Ordenación (puntuación , juegos terminados / en
+proceso.
+Filtros (nombre, categoría, etiqueta(s)).
+Acciones disponibles (editar, borrar, marcar como
+completado).
+
+Creación de juego
+
+/juegos/nuevo
+
+-
+
+Formulario + botón crear
+
+Edición de juego
+
+/juegos/edicion/:id
+
+-
+
+Formulario + botón guardar
+
+Detalle de juego
+(opcional)
+
+/juegos/:id
+
+-
+
+Mostrar información detallada del juego
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Sprint 1: Frontend para un único gamer (continuación)
+
+Resumen funcionalidades que debe tener
+-
+
+Conexión con la API:
+- Crear, listar, editar y borrar juegos.
+- Ordenar y ﬁltrar resultados.
+- Marcar juegos como completados (registrando la fecha automáticamente).
+
+-
+
+Interfaz limpia y funcional:
+- Usar componentes reutilizables para formularios, listas y tarjetas.
+- Estilo básico (puedes usar Tailwind CSS o Bootstrap para acelerar).
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Sprint 2: Frontend para múltiples gamers
+
+En este sprint, añadimos autenticación y personalización para que cada usuario pueda
+gestionar su propio backlog.
+Pantallas a desarrollar
+-
+
+Todas las del sprint 1
+Registro
+Login
+Perﬁl (opcional)
+
+Ejercicio entregable - Frontend
+
+FSE+ Fondo Social Europeo Plus
+
+Sprint 2: Frontend para múltiples gamers (continuación)
+Las pantallas que no aparecen en el listado no se ven modiﬁcadas.
+Página
+
+Ruta
+
+Elementos
+
+Registro
+
+/registro
+
+-
+
+Formulario para crear una cuenta (email, alias y
+contraseña).
+
+Login
+
+/login
+
+-
+
+Formulario para iniciar sesión con email y contraseña.
+Mostrar errores si las credenciales son incorrectas.
+
+Home (Actualizada)
+
+/
+
+-
+
+Incluir enlace a registro / login y ocultar el que
+corresponda según la sesión
+
+Lista de juegos
+(actualizada)
+
+/juegos
+
+-
+
+Mostrar solo los juegos del usuario autenticado.
+
+Creación de juego
+(actualizada)
+
+/juegos/nuevo
+
+-
+
+Asociar los juegos al usuario que los crea.
+
+Pantalla de perﬁl
+(opcional)
+
+/perﬁl
+
+-
+
+Mostrar información básica del usuario logueado (alias
+y email).
+Opción para cerrar sesión.
+
+-
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Sprint 2: Frontend para múltiples gamers (continuación)
+
+Resumen funcionalidades que debe tener
+-
+
+Autenticación:
+- Implementar el ﬂujo de registro y login.
+- Guardar el token de autenticación (por ejemplo, en localStorage).
+Protección de rutas:
+- Restringir acceso a la lista de juegos, creación, edición, etc., solo a usuarios
+autenticados.
+Manejo de sesiones:
+- Cerrar sesión de forma limpia.
+- Mostrar la información correcta según el usuario logueado.
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Objetivos clave de cada sprint
+
+FSE+ Fondo Social Europeo Plus
+
+Ejercicio entregable - Frontend
+
+Sprint 1: Una app funcional que permita a un gamer gestionar su backlog de
+videojuegos de manera completa y ﬂuida.
+Sprint 2: Extender la funcionalidad para que varios gamers puedan usar la app,
+cada uno con su cuenta y juegos privados.
+
+FSE+ Fondo Social Europeo Plus
+
+Fecha y hora límite
+02/06/2026 13:30:00
+
+Ejercicio entregable - Frontend
+
+

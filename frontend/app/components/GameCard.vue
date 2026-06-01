@@ -1,5 +1,14 @@
 <template>
   <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-primary transition-colors group relative flex flex-col">
+    <!-- Cover Image Hero -->
+    <div v-if="game.coverImage" class="h-36 w-full overflow-hidden">
+      <img
+        :src="game.coverImage"
+        alt="cover"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      >
+    </div>
+
     <!-- Priority Badge (KPI estilo mision) -->
     <div
       :class="priorityClass"

@@ -25,6 +25,7 @@ model Game {
   completedAt     DateTime?
   notes           String?
   rating          Int?
+  coverImage      String?
   userId          Int?
   user            User?     @relation(fields: [userId], references: [id])
 

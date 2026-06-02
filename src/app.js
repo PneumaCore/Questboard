@@ -9,10 +9,22 @@ const authenticateToken = require('./middlewares/authMiddleware');
 
 const app = express();
 
+// Normalizamos la variable FRONTEND_URL para evitar errores de CORS
+// por barras finales, espacios, o comparaciones de strings.
+// Soporta múltiples orígenes separados por comas (ej. dominio de preview + producción).
+let allowedOrigin = process.env.FRONTEND_URL || true; // 'true' = permitir cualquier origen (solo en local/desarr)
+
+if (typeof allowedOrigin === 'string') {
+  const origins = allowedOrigin.split(',').map(url => url.trim().replace(/\/$/, ''));
+  // Si solo hay uno, lo pasamos como string; si hay varios, como array.
+  allowedOrigin = origins.length === 1 ? origins[0] : origins;
+}
+
 // Middleware CORS para permitir peticiones desde el frontend
 // En producción, limita esto a tu dominio de Vercel para mayor seguridad
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || true, // 'true' permite cualquier origen si no está definida la variable
+  origin: allowedOrigin,
+  credentials: false,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };

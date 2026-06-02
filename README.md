@@ -126,13 +126,9 @@ El proyecto sigue una arquitectura **cliente-servidor** clásica con separación
 - [x] **Diseño responsive**: adaptado a móvil, tablet y escritorio.
 - [x] **UI/UX Dark Theme**: paleta de colores personalizada con estética gamer/cyberpunk (cyan, magenta, violeta).
 
-> **Nota**: la página de perfil de usuario (`/perfil`) es la única funcionalidad opcional del entregable que no ha sido implementada.
-
 ---
 
 ## 📸 Screenshots
-
-> A continuación se muestran capturas de pantalla representativas de la aplicación. El alumno deberá insertar aquí sus imágenes reales antes de la entrega.
 
 ### 1. Portada / Inicio de sesión
 

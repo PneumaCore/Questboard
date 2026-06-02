@@ -159,7 +159,7 @@ El proyecto sigue una arquitectura **cliente-servidor** clásica con separación
 ```
 Questboard/
 │
-├── 📂 backend/ (Raíz del repo)
+├── 📂 backend/
 │   ├── .env                        # Variables de entorno
 │   ├── package.json
 │   ├── prisma/
@@ -371,7 +371,7 @@ La aplicación está desplegada y operativa en los siguientes entornos:
 
 ## 👨‍💻 Autor
 
-** Lucía Mengual Ramírez **
+**Lucía Mengual Ramírez**
 
 - 📚 Curso: Desarrollo de Aplicaciones Web con IA — EOI (FSE+)
 - 📅 Junio 2026

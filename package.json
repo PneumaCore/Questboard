@@ -5,8 +5,10 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
+    "start:prod": "prisma migrate deploy && node src/app.js",
     "dev": "nodemon src/app.js",
-    "prisma:migrate": "prisma migrate dev",
+    "build": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
     "prisma:studio": "prisma studio"
   },
   "keywords": [],
@@ -18,11 +20,11 @@
     "cors": "^2.8.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.13.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
-    "nodemon": "^3.1.0",
-    "prisma": "^5.13.0"
+    "nodemon": "^3.1.0"
   }
 }

@@ -10,7 +10,13 @@ const authenticateToken = require('./middlewares/authMiddleware');
 const app = express();
 
 // Middleware CORS para permitir peticiones desde el frontend
-app.use(cors());
+// En producción, limita esto a tu dominio de Vercel para mayor seguridad
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || true, // 'true' permite cualquier origen si no está definida la variable
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
 
 // Middleware para parsear cuerpos JSON
 app.use(express.json());
